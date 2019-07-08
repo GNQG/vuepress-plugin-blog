@@ -1,3 +1,5 @@
+import * as url from 'url'
+import * as path from 'path'
 import { env } from '@vuepress/shared-utils'
 import { VuePressContext, VuePressPage } from './interface/VuePress'
 import { ClassifierTypeEnum, DefaultLayoutEnum } from './interface/Classifier'
@@ -14,9 +16,10 @@ export interface FrontmatterTempMap {
 export function curryFrontmatterHandler(
   scope: string,
   name: string,
+  indexPath: string,
   map: FrontmatterTempMap,
 ): FrontmatterHandler
-export function curryFrontmatterHandler(scope, name, map) {
+export function curryFrontmatterHandler(scope, name, indexPath, map) {
   return (key, pageKey) => {
     if (key) {
       if (!map[key]) {
@@ -24,7 +27,7 @@ export function curryFrontmatterHandler(scope, name, map) {
         map[key].key = key
         map[key].scope = scope
         map[key].name = name
-        map[key].path = `/${scope}/${key}/`
+        map[key].path = url.format(path.join("/", indexPath, key, "/"))
         map[key].pageKeys = []
       }
       map[key].pageKeys.push(pageKey)

@@ -102,8 +102,6 @@ module.exports = (options: BlogPluginOptions, ctx: VuePressContext) => {
               /**
                * Register pagination
                */
-              const indexPath = `/${scope}/${key}/`
-
               paginations.push({
                 classifierType: ClassifierTypeEnum.Frontmatter,
                 getPaginationPageTitle(index) {
@@ -112,7 +110,7 @@ module.exports = (options: BlogPluginOptions, ctx: VuePressContext) => {
                 ...resolvePaginationConfig(
                   ClassifierTypeEnum.Frontmatter,
                   pagination,
-                  indexPath,
+                  path,
                   ctx,
                   keys,
                 ),

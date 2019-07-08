@@ -1,3 +1,4 @@
+import * as url from 'url'
 import { fs, path, logger, chalk } from '@vuepress/shared-utils'
 import { BlogPluginOptions } from './interface/Options'
 import { ExtraPage } from './interface/ExtraPages'
@@ -57,7 +58,7 @@ export function handleOptions(
       id,
       name = UpperFirstChar(directory.id),
       dirname,
-      path: indexPath = `/${directory.id}/`,
+      path: indexPath = url.format(path.join("/", directory.id, "/")),
       layout: indexLayout = 'IndexPost',
       frontmatter,
       itemLayout = 'Post',
@@ -98,7 +99,7 @@ export function handleOptions(
       when: ({ regularPath }) =>
         Boolean(regularPath) &&
         regularPath !== indexPath &&
-        regularPath.startsWith(`/${dirname}/`),
+        regularPath.startsWith(url.format(path.join("/", dirname, "/"))),
       frontmatter: {
         layout: ctx.getLayout(itemLayout, 'Post'),
         permalink: itemPermalink,
@@ -166,7 +167,7 @@ export function handleOptions(
       pagination,
       keys,
       map,
-      _handler: curryFrontmatterHandler(id, name, map),
+      _handler: curryFrontmatterHandler(id, name, indexPath, map),
     })
   }
 
