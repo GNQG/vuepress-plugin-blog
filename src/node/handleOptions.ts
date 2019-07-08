@@ -55,6 +55,7 @@ export function handleOptions(
   for (const directory of directories) {
     const {
       id,
+      name = UpperFirstChar(directory.id),
       dirname,
       path: indexPath = `/${directory.id}/`,
       layout: indexLayout = 'IndexPost',
@@ -81,7 +82,7 @@ export function handleOptions(
       frontmatter: {
         // Set layout for index page.
         layout: ctx.getLayout(indexLayout),
-        title: `${UpperFirstChar(id)}`,
+        title: `${name}`,
         ...frontmatter,
       },
       meta: {
@@ -111,7 +112,7 @@ export function handleOptions(
     paginations.push({
       classifierType: ClassifierTypeEnum.Directory,
       getPaginationPageTitle(index) {
-        return `Page ${index + 1} | ${id}`
+        return `Page ${index + 1} | ${name}`
       },
       ...resolvePaginationConfig(
         ClassifierTypeEnum.Directory,
@@ -130,6 +131,7 @@ export function handleOptions(
   for (const frontmatterPage of frontmatters) {
     const {
       id,
+      name = UpperFirstChar(frontmatterPage.id),
       keys,
       path: indexPath,
       layout: indexLayout,
@@ -148,7 +150,7 @@ export function handleOptions(
       frontmatter: {
         // Set layout for index page.
         layout: ctx.getLayout(indexLayout, 'FrontmatterKey'),
-        title: `${UpperFirstChar(id)}`,
+        title: `${name}`,
         ...frontmatter,
       },
       meta: {
@@ -164,7 +166,7 @@ export function handleOptions(
       pagination,
       keys,
       map,
-      _handler: curryFrontmatterHandler(id, map),
+      _handler: curryFrontmatterHandler(id, name, map),
     })
   }
 

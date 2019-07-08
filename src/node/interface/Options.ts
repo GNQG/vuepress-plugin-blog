@@ -8,6 +8,7 @@ export interface DirectoryClassifier {
    * Unique id for current classifier.
    */
   id: string;
+  name?: string;
   /**
    * Matched directory name.
    */
@@ -46,6 +47,7 @@ export interface FrontmatterClassifier {
    * Unique id for current classifier.
    */
   id: string;
+  name?: string;
   /**
    * Frontmatter keys used to classify pages.
    * It's usually used to merge multiple tags with the same meaning
