@@ -129,7 +129,7 @@ module.exports = (options: BlogPluginOptions, ctx: VuePressContext) => {
                 pid: scope,
                 id: key,
                 frontmatter: {
-                  layout: DefaultLayoutEnum.FrontmatterPagination,
+                  layout: ctx.getLayout(pagination.layout, DefaultLayoutEnum.FrontmatterPagination),
                   title: getKeyIndexPageTitle ? getKeyIndexPageTitle(key) : `${key} ${name}`,
                 },
               }
