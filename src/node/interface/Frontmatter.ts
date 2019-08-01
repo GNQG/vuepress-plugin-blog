@@ -6,5 +6,6 @@ export interface FrontmatterClassificationPage {
   pagination: PaginationConfig;
   keys: string[];
   map: Record<string, any>;
+  getKeyIndexPageTitle?: (key: string) => string;
   _handler: FrontmatterHandler;
 }

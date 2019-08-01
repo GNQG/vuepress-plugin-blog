@@ -75,6 +75,7 @@ export async function registerPaginations(
     recordPageFilters(pid, filter)
     recordPageSorters(pid, sorter)
 
+    const pageLength = pagination.pages.length
     const extraPages = pagination.pages
       .slice(1) // The index page has been generated.
       .map(({ path }, index) => {
@@ -82,7 +83,7 @@ export async function registerPaginations(
           permalink: path,
           frontmatter: {
             layout,
-            title: (getPaginationPageTitle as getPaginationPageTitle)(index),
+            title: (getPaginationPageTitle as getPaginationPageTitle)(index+1, pageLength, id),
           },
           meta: {
             pid,

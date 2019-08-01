@@ -112,9 +112,11 @@ export function handleOptions(
      */
     paginations.push({
       classifierType: ClassifierTypeEnum.Directory,
-      getPaginationPageTitle(index) {
-        return `Page ${index + 1} | ${name}`
-      },
+      getPaginationPageTitle: pagination.getPaginationPageTitle || (
+        (index: number, _len: number, _key: string) => {
+          return `Page ${index + 1} | ${name}`
+        }
+      ),
       ...resolvePaginationConfig(
         ClassifierTypeEnum.Directory,
         pagination,
@@ -137,6 +139,7 @@ export function handleOptions(
       path: indexPath,
       layout: indexLayout,
       frontmatter,
+      getKeyIndexPageTitle,
       pagination = {
         lengthPerPage: 10,
       } as PaginationConfig,
@@ -167,6 +170,7 @@ export function handleOptions(
       pagination,
       keys,
       map,
+      getKeyIndexPageTitle,
       _handler: curryFrontmatterHandler(id, name, indexPath, map),
     })
   }

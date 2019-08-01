@@ -67,6 +67,7 @@ export interface FrontmatterClassifier {
    * Frontmatter for index page.
    */
   frontmatter?: Record<string, any>;
+  getKeyIndexPageTitle?: (key: string) => string,
   /**
    * Pagination config for current classifier.
    */

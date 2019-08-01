@@ -16,7 +16,7 @@ export type PageSorter = (
 ) => boolean | number
 
 export type GetPaginationPageUrl = (index: number) => string
-export type getPaginationPageTitle = (index: number) => string
+export type getPaginationPageTitle = (pageIdx: number, pageLength: number, key: string) => string
 
 /**
  * Pagination config options for users.
