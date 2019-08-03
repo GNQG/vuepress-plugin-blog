@@ -191,8 +191,8 @@ export default ${serializePaginations(ctx.serializedPaginations, [
     },
 
     enhanceAppFiles: [
-      path.resolve(__dirname, '../client/classification.js'),
-      path.resolve(__dirname, '../client/pagination.js'),
+      path.resolve(__dirname, '../client/client/classification.js'),
+      path.resolve(__dirname, '../client/client/pagination.js'),
     ],
   }
 }
